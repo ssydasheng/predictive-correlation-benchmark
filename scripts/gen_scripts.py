@@ -44,7 +44,7 @@ def toy_metrics(name):
 
     prefix = 'python main.py --task toy_compute_metrics --input_dim 9 --method homo_ensemble '
     for LR in [0.001, 0.003, 0.01]:
-        for VAR in [3,  10,  100]:
+        for VAR in [3, 6, 9, 10, 20, 50, 100, 150, 200]:
             for EP in [100, 300, 1000]:
                 for NU in [50, 100]:
                     cmd = prefix +  '--batch_size 100 -n_networks {} -nu {} -lr {} -e {} --note VAR{}_NU{}_LR{}_EP{}'.format(
@@ -54,7 +54,7 @@ def toy_metrics(name):
 
     prefix = 'python main.py --task toy_compute_metrics --input_dim 9 --method bbb '
     for LR in [0.001, 0.003, 0.01]:
-        for VAR in [3,  10,  100]:
+        for VAR in [3, 6, 9, 10, 20, 50, 100, 150, 200]:
             for EP in [100, 300, 1000]:
                 for NU in [50, 100]:
                     cmd = prefix +  '--batch_size 100 --eval_cov_samples {} -nu {} -lr {} -e {} --note VAR{}_NU{}_LR{}_EP{}'.format(
@@ -64,7 +64,7 @@ def toy_metrics(name):
 
     prefix = 'python main.py --task toy_compute_metrics --input_dim 9 --method nng '
     for LR in [0.001, 0.003, 0.01]:
-        for VAR in [3,  10,  100]:
+        for VAR in [3, 6, 9, 10, 20, 50, 100, 150, 200]:
             for EP in [100, 300, 1000]:
                 for NU in [50, 100]:
                     cmd = prefix + '-Lae 500 -Lar 0.1 --batch_size 100 --eval_cov_samples {} -nu {} -lr {} -e {} --note VAR{}_NU{}_LR{}_EP{}'.format(
@@ -74,7 +74,7 @@ def toy_metrics(name):
 
     prefix = 'python main.py --task toy_compute_metrics --input_dim 9 --method dropout '
     for LR in [0.001, 0.003, 0.01]:
-        for VAR in [3,  10,  100]:
+        for VAR in [3, 6, 9, 10, 20, 50, 100, 150, 200]:
             for EP in [100, 300, 1000]:
                 for NU in [50, 100]:
                     cmd = prefix + '--dropout_rate 0.05 --dropout_tau 0.025 --batch_size 100 --eval_cov_samples {} -nu {} -lr {} -e {} --note VAR{}_NU{}_LR{}_EP{}'.format(
@@ -84,7 +84,7 @@ def toy_metrics(name):
 
     prefix = 'python main.py --task toy_compute_metrics --input_dim 9 --method emhmc '
     for LR in [0.001, 0.003, 0.01]:
-        for VAR in [3,  10,  100]:
+        for VAR in [3, 6, 9, 10, 20, 50, 100, 150, 200]:
             for EP in [100, 300, 1000]:
                 for NU in [50, 100]:
                     cmd = prefix + '--hmc_num_chains 1  --hmc_leap_frog_steps 5 --hmc_step_size 0.01 --num_steps_between_samples 100 --opt_eta --init_eta 1.0 --hmc_n_steps_per_em 10 --hmc_n_steps_adapt_step_size 3 --batch_size -1 --hmc_samples {} -nu {} -lr {} --hmc_burnin {} --note VAR{}_NU{}_LR{}_EP{}'.format(

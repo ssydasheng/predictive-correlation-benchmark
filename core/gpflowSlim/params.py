@@ -22,14 +22,14 @@ import enum
 import numpy as np
 import tensorflow as tf
 
-from gpflowSlim import settings
+from core.gpflowSlim import settings
 
 
-from gpflowSlim.base import IPrior, ITransform
+from core.gpflowSlim.base import IPrior, ITransform
 
-from gpflowSlim import misc
+from core.gpflowSlim import misc
 
-from gpflowSlim.transforms import Identity
+from core.gpflowSlim.transforms import Identity
 
 
 class Parameter(object):
@@ -141,7 +141,7 @@ class Parameter(object):
         self.init_value = value
         # init var
         vf_value = self.transform.backward(value)
-        self.vf_val = tf.get_variable(self.instance_name,
+        self.vf_val = tf.compat.v1.get_variable(self.instance_name,
                                       initializer=tf.cast(vf_value, settings.float_type),
                                       trainable=self.trainable)
 

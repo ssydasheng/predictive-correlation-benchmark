@@ -8,13 +8,13 @@ class Abstract(object):
 
     def build_inputs(self):
         float_type = self.float_type
-        self.x = tf.placeholder(float_type, shape=[None, self.input_dim], name='x')
-        self.x_pred = tf.placeholder(float_type, shape=[None, self.input_dim], name='x_pred')
-        self.y = tf.placeholder(float_type, shape=[None], name='y')
-        self.y_pred = tf.placeholder(float_type, shape=[None], name='y_pred')
-        self.n_particles = tf.placeholder(tf.int32, shape=[], name='n_particles')
-        self.learning_rate_ph = tf.placeholder(float_type, shape=[], name='learning_rate')
-        self.m = tf.placeholder(tf.int32, shape=[], name='mini_batch_size')
+        self.x = tf.compat.v1.placeholder(float_type, shape=[None, self.input_dim], name='x')
+        self.x_pred = tf.compat.v1.placeholder(float_type, shape=[None, self.input_dim], name='x_pred')
+        self.y = tf.compat.v1.placeholder(float_type, shape=[None], name='y')
+        self.y_pred = tf.compat.v1.placeholder(float_type, shape=[None], name='y_pred')
+        self.n_particles = tf.compat.v1.placeholder(tf.int32, shape=[], name='n_particles')
+        self.learning_rate_ph = tf.compat.v1.placeholder(float_type, shape=[], name='learning_rate')
+        self.m = tf.compat.v1.placeholder(tf.int32, shape=[], name='mini_batch_size')
 
         # self.x1 = tf.placeholder(float_type, shape=[None, self.input_dim], name='x1')
         # self.x2 = tf.placeholder(float_type, shape=[None, self.input_dim], name='x2')

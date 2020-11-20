@@ -20,7 +20,7 @@ from functools import reduce
 import warnings
 
 import tensorflow as tf
-import tensorflow.contrib.eager as tfe
+#import tensorflow.contrib.eager as tfe
 import numpy as np
 
 from . import transforms
@@ -313,7 +313,7 @@ class Static(Kernel):
 
     def __init__(self, input_dim, variance=1.0, active_dims=None, name=None):
         super().__init__(input_dim, active_dims, name=name)
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             self._variance = Parameter(variance, transform=transforms.positive, name='variance')
         self._parameters = self._parameters + [self._variance]
 
@@ -382,7 +382,7 @@ class Stationary(Kernel):
         """
         super().__init__(input_dim, active_dims, name=name)
 
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             self._variance = Parameter(variance, transform=transforms.positive,
                                        name='variance', dtype=settings.float_type)
             if ARD:
@@ -452,7 +452,7 @@ class RatQuad(Stationary):
     """
     def __init__(self, input_dim, alpha=1., variance=1.0, lengthscales=None,
                  active_dims=None, ARD=False, min_ls=1e-6, name='kernel'):
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             super(RatQuad, self).__init__(
                 input_dim=input_dim, variance=variance,
                 lengthscales=lengthscales, active_dims=active_dims, ARD=ARD, min_ls=min_ls, name=name)
@@ -486,7 +486,7 @@ class Linear(Kernel):
         """
         super().__init__(input_dim, active_dims, name=name)
         self.ARD = ARD
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             variance = np.ones(self.input_dim, dtype=settings.float_type) * variance if ARD else variance
             self._variance = Parameter(variance, transform=transforms.positive, name='variance')
 
@@ -538,7 +538,7 @@ class Polynomial(Linear):
         """
         super().__init__(input_dim, variance, active_dims, ARD, name=name)
         self.degree = degree
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             self._offset = Parameter(offset, transform=transforms.positive, name='offset')
 
         self._parameters = self._parameters + [self._variance, self._offset]
@@ -622,7 +622,7 @@ class Cosine(Stationary):
                  active_dims=None, ARD=False, min_ls=1e-6, name='kernel'):
         super(Cosine, self).__init__(input_dim, variance=variance, lengthscales=lengthscales,
                  active_dims=active_dims, ARD=ARD, min_ls=min_ls, name=name)
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             self._weights = Parameter(np.random.normal(size=[input_dim, 1]), name='weights')
         self._parameters = self._parameters + [self._weights]
 
@@ -689,7 +689,7 @@ class ArcCosine(Kernel):
             raise ValueError('Requested kernel order is not implemented.')
         self.order = order
 
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             self._variance = Parameter(variance, transform=transforms.positive, name='variance')
             self._bias_variance = Parameter(bias_variance, transform=transforms.positive, name='bias_variance')
             if ARD:
@@ -781,7 +781,7 @@ class Periodic(Kernel):
         # No ARD support for lengthscale or period yet
         super().__init__(input_dim, active_dims, name=name)
 
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             self._variance = Parameter(variance, transform=transforms.positive, name='variance')
             self._ls = Parameter(lengthscales, transform=transforms.positive, name='ls')
             self._period = Parameter(period, transform=transforms.positive, name='period')
@@ -849,7 +849,7 @@ class Coregion(Kernel):
 
         self.output_dim = output_dim
         self.rank = rank
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             self._W = Parameter(np.zeros((self.output_dim, self.rank), dtype=settings.float_type), name='W')
             self._kappa = Parameter(
                 np.ones(self.output_dim, dtype=settings.float_type),
@@ -889,7 +889,7 @@ class CosineComplex(Stationary):
                  active_dims=None, ARD=False, min_ls=1e-6, name='CosineComplex'):
         super(CosineComplex, self).__init__(input_dim, variance=variance, lengthscales=lengthscales,
                  active_dims=active_dims, ARD=ARD, min_ls=min_ls, name=name)
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             self._weights = Parameter(np.random.normal(size=[input_dim, 1]), name='weights')
         self._parameters = self._parameters + [self._weights]
 

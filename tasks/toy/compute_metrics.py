@@ -42,11 +42,11 @@ def compute_oracle_lld_rmse(dataset):
     test_rmse = np.mean((te_Y - pred_mu) ** 2) ** 0.5
     return test_lld, test_rmse
 
-
+from tensorflow.python.framework import ops
 def _run(args, seed, print):
-    tf.reset_default_graph()
+    ops.reset_default_graph()
     dataset = edict(dict(np.load(os.path.join(
-        root_path, TOY_DATA_PATH, 'reluLarge', 'dim%d_seed%s.npz' % (args.input_dim, seed)))))
+        root_path, TOY_DATA_PATH, 'reluLarge', 'dim%d_seed%s.npz' % (5, seed)))))
 
     # ================================== setup model ==================================
     BSZ, NBS = args.batch_size, args.n_base

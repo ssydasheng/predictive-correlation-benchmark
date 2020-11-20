@@ -33,7 +33,7 @@ def get_model(args,
 
     N = train_x.shape[0]
     logger('** N: = %d\n' % N)
-    with tf.variable_scope('prior'):
+    with tf.compat.v1.variable_scope('prior'):
         if hasattr(args, 'kernel'):
             prior_kernel, _ = gen_kern(args, train_x, input_dim, dim_groups=dim_groups)
         else:

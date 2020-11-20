@@ -23,7 +23,7 @@ import tensorflow as tf
 from .. import settings
 from ..mean_functions import Zero
 from ..LBFGS import LBFGS
-import tensorflow.contrib.eager as tfe
+#import tensorflow.contrib.eager as tfe
 
 
 class Model(object):
@@ -171,7 +171,7 @@ class GPModel(Model):
 
     def optimize(self, max_iter=1000):
         if not hasattr(self, 'LBFGS-opt'):
-            self.LBFGS_opt = LBFGS(tfe.implicit_value_and_gradients(lambda: self.objective), nCorrection=20)
+            self.LBFGS_opt = LBFGS(tf.implicit_value_and_gradients(lambda: self.objective), nCorrection=20)
         #print('begin to train this model')
         try:
             self.LBFGS_opt.run()
@@ -188,7 +188,7 @@ class GPModel(Model):
 
             optimizer = tf.train.AdamOptimizer(learning_rate=1e-3)
             for iter in range(2000):
-                obj, grads = tfe.implicit_value_and_gradients(lambda: self.objective)()
+                obj, grads = tf.implicit_value_and_gradients(lambda: self.objective)()
                 optimizer.apply_gradients(grads)
 
                 if iter % 1000 == 0:

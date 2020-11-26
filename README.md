@@ -20,7 +20,7 @@ The generated data comes with the ORACLE posterior predictive variances and corr
 meta-correlations to evaluate the predictive uncertainty of our models. We use meta-correlations to validate TAL and XLL(R). 
 For example, the following command computes and saves the meta-corrs, TAL scores and XLLs for the GP model. 
 ```
-    python main.py --task toy_compute_metrics --method gp 
+    python main.py --task toy_compute_metrics --method gp --input_dim 9
 ```
 Having the results for a list of models, we can visualize whether meta-corrs, TAL scores and XLLs are strongly correlated
  using `notebooks/scatter_metrics.py`.

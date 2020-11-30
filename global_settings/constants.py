@@ -17,8 +17,7 @@ GLOBAL_BLOB = edict(
 
 
 TOY_DATA_PATH = 'results/toy/data'
-# RESULT_TOY_METRIC_PATH = 'results/toy/metric'
-RESULT_TOY_METRIC_PATH = '/scratch/hdd001/home/ssy/ScalableFBNN/Oct11/metrics'
+RESULT_TOY_METRIC_PATH = 'results/toy/metric'
 LOG_TOY_METRIC_PATH = 'logs/toy/metric'
 
 RESULT_REG_PATH = 'results/regression'

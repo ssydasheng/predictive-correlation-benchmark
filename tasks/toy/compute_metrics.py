@@ -119,7 +119,7 @@ def _run(args, seed, print):
     # ======== select the new data points (BMIG, MIG, TIG) and compute the Test LLD afterwards . ============
     org_crit = args.criteria
 
-    args.criteria = 'BatchMIG'
+    args.criteria = 'batchMIG'
     BMIG_data_idxs = get_selected_data_idxs(train_x, test_x, pool_x,
                                             dataset, args, covar_op, corr_op,
                                             model, sess, n_particles=args.eval_cov_samples)

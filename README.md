@@ -68,5 +68,5 @@ Evaluating the XLL and XLLR requires only the predictive covariance for the test
 ```
 Having the predictive covariances for different models, we can compute XLL and XLLR using `notebooks/uci_xll.py`. The test predictions of our models can be downloaded from [xll](https://drive.google.com/file/d/1zJBxkwb3QcrG-k_PGDk6P2YpV488jcWz/view?usp=sharing), together with which you can compute XLL(R) for your own model.
 
-#### Scripts
+### Scripts
 Finally, you can refer to `scripts` for all experiments. **To be noted, the examplar codes above are only minimal**. For the exact command compatible to our plotting notebooks, please refer to the `scripts`. 

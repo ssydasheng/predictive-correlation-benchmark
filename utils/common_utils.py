@@ -57,7 +57,7 @@ def regression_train(args,
 
     begin_time = time.time()
     for iter in range(epoch_iters):
-        if args.method == 'ensemble':
+        if args.method == 'ensemble' or args.method == 'homo_ensemble':
             n_networks = args.num_networks
             indices = [np.random.choice(train_x.shape[0], BSZ) for _ in range(n_networks)]
             x_batch = np.concatenate([train_x[indices[_]] for _ in range(n_networks)], 0)

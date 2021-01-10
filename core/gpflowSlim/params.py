@@ -22,14 +22,14 @@ import enum
 import numpy as np
 import tensorflow as tf
 
-from core.gpflowSlim import settings
+from . import settings
 
 
-from core.gpflowSlim.base import IPrior, ITransform
+from .base import IPrior, ITransform
 
-from core.gpflowSlim import misc
+from . import misc
 
-from core.gpflowSlim.transforms import Identity
+from .transforms import Identity
 
 
 class Parameter(object):

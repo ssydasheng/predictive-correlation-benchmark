@@ -3,9 +3,9 @@ import numpy as np
 import tensorflow as tf
 
 
-from gpflowSlim.kernels import Kernel
-from gpflowSlim import settings
-from gpflowSlim.params import Parameter
+from .kernels import Kernel
+from . import settings
+from .params import Parameter
 
 
 class AdditivePatchKernel(Kernel):

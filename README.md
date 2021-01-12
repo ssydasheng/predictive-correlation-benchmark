@@ -52,10 +52,10 @@ Then we can use the pre-trained ORACLE for the selection process as well,
 After the selection process, the prediction process generates the reported performances,
 ```
     python main.py --task al_prediction --method gp --dataset boston \
-    --criteria batchMIG --base_method bnn_factorial
+    --criteria batchMIG --base_method bbb
 
     python main.py --task al_oracle_prediction --method gp --dataset boston \
-    --criteria batchMIG --base_method bnn_factorial \
+    --criteria batchMIG --base_method bbb \
     --epochs 2000 --n_base 1000 --batch_size 2000 --kernel nkn -ard 
     
 ```
